@@ -30,6 +30,7 @@ After #16 seed UMBC became the first to beat a #1 seed, I was curious what the h
 (2014) 25:            Tennessee 11 vs 14 Mercer
 (2015) 25:                 UCLA 11 vs 14 UAB
 (2016) 25:             Syracuse 10 vs 15 Middle Tennessee
+(2018) 25:                 UMBC 16 vs  9 Kansas State
 (1997) 24:          Chattanooga 14 vs 10 Providence
 (1993) 22:               Temple  7 vs 15 Santa Clara
 (2012) 22:              Florida  7 vs 15 Norfolk State
@@ -113,6 +114,7 @@ The least crazy was [2008's final four][2008], the only with four 1 seeds.
 18 2014          Florida (1)     Connecticut (7)        Wisconsin ( 2)        Kentucky ( 8)
 18 2013       Louisville (1)   Wichita State (9)         Michigan ( 4)        Syracuse ( 4)
 15 2016        Villanova (2)        Oklahoma (2)   North Carolina ( 1)        Syracuse (10)
+16 2018  Loyola–Chicago (11)       Michigan ( 3)        Villanova ( 1)          Kansas ( 1)
 15 1986             Duke (1)          Kansas (1)              LSU (11)      Louisville ( 2)
 13 2010   Michigan State (5)          Butler (5)    West Virginia ( 2)            Duke ( 1)
 13 1992             Duke (1)         Indiana (2)        Michigan# ( 6)      Cincinnati ( 4)
@@ -144,7 +146,7 @@ The least crazy was [2008's final four][2008], the only with four 1 seeds.
 
 ## Using the data
 
-The data comes from [Wikipedia articles][2011] is all in `pages/YYYY.json`. For example:
+The data comes from [Wikipedia articles][2011]. It's all in `data/YYYY.json`. For example:
 
 ```json
 {
@@ -216,7 +218,7 @@ The data comes from [Wikipedia articles][2011] is all in `pages/YYYY.json`. For 
 If you're working in Python, you can find some helper functions in `utils.py` and some
 example code in `find_highest_seeds.py` and `craziest_final_four.py`:
 
-    $ ./craziest_final_four.py pages/*.json
+    $ ./craziest_final_four.py data/*.json
     26 2011         Kentucky ( 4)       Connecticut ( 3)              VCU (11)           Butler ( 8)
     22 2000          Florida ( 5)    North Carolina ( 8)   Michigan State ( 1)        Wisconsin ( 8)
     20 2006              LSU ( 4)              UCLA ( 2)          Florida ( 3)     George Mason (11)
@@ -230,7 +232,9 @@ To regenerate (or update) the data, you'll need Python 3.6 or later.
 Set up your virtual environment and run:
 
     pip install -r requirements.txt
-    ./extract_wiki_source.py pages/*.html && ./extract_bracket.py pages/*.wiki
+    ./extract_wiki_source.py pages/*.html
+    ./extract_bracket.py pages/*.wiki
+    mv pages/*.json data/
 
 To add a new year, use `curl` to put a new HTML file in `pages/YYYY.html`. You can
 use the URLs in `urls.txt` as a template.
